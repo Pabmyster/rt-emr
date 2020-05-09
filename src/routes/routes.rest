@@ -1,0 +1,49 @@
+@jwt = eyJhbGciOiJIUzI1NiIsImtpZCI6InVzLTMifQ.eyJqdGkiOiIzMzk0NzFmOGY2OWM0Y2I2OTZhOGE2MDI4M2FjYjIxZSIsImlhdCI6MTU3NDEwNzI5NiwiY2EiOlsiNzc4ZTA0MWQxYTYzNGRjYTliMzVhY2E3ODM4Mzg3MjIiXSwiZGQiOjAsInRlbiI6Im5pY29sYXN2ZW5uZSIsImVjdHgiOiJDVGFscUpxRElJSVJSMFNSWWF4MDBoNkNLQi8vZHg1S204eExUMnl6RlNKZDVET1NYMTVsNVNoNkxCRHJNa3E5cSt4anNHR0lFaVFNYTNUaTF2MFl6QXNKZkNwRU04dEVHY0JqZXhvanNXdmd0L2V2THhXNkVWSlhHQjEwRmZrMi51NEVBd2J6OGVOckhsY0wvZjFGYUh3PT0iLCJqdG4iOiJwb3N0LXVzZXItcmVnaXN0cmF0aW9uIiwicGIiOjIsInVybCI6IndlYnRhc2s6Ly9sb2NhbGhvc3QvYXBpL2RhdGEvY29kZS9uaWNvbGFzdmVubmUlMkZwb3N0LXVzZXItcmVnaXN0cmF0aW9uIn0.pueU0C-5_moO9Fj6_jfyCR8xgiIn1q6eBdD-18fYwwY
+
+POST https://nicolasvenne.auth0.com/oauth/token
+content-type: application/json
+
+{
+    "grant_type": "client_credentials",
+    "client_id": "RjpIm7OXdnlK8ukojJWR9sfS4Y2ppbOp",
+    "client_secret": "Agt1Id3TntB5P3ejzg4NECoU4dAVNwPydMETmTRwfzVXO4rJRPmLH4KROLpt3XmQ",
+    "audience": "https://api.nicolasvenne.ca"
+}
+
+###
+
+GET http://localhost:3001/persons
+content-type: application/json
+Authorization: Bearer {{jwt}}
+###
+
+GET http://localhost:3001/patients HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+    "person_id": "fb18fc6a-240f-4bc8-bc3f-784947d43ab1",
+    "health_card_number": "777888999"
+}
+
+###
+
+GET http://localhost:3001/persons HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+    "address": "174 Copper St",
+    "city": "Sudbury",
+    "country": "Canada",
+    "postal_code": "P3E-2C2"
+}
+
+###
+
+GET http://localhost:3001/patients/search/Josh HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{jwt}}
+
+###
+
